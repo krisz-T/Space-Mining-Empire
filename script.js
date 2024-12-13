@@ -304,8 +304,8 @@ const achievements = [
 ];
 
 const sounds = {
-    upgrade: new Audio('sounds/upgrade.ogg'),
-    achievement: new Audio('sounds/achievement.ogg')
+    upgrade: new Audio('sounds/upgrade.wav'),
+    achievement: new Audio('sounds/achievement.wav')
 };
 
 const clickSounds = [
