@@ -11,152 +11,150 @@ const upgrades = [
         type: 'passive'
     },
     {
-        id: 'pickaxe',
-        name: 'Space Pickaxe',
-        description: 'Reinforced pickaxe for manual mining',
-        baseCost: 30,
-        baseIncrease: 1,
+        id: 'drill',
+        name: 'Rock Drill',
+        description: 'Increases minerals per click',
+        baseCost: 25,
+        baseIncrease: 0.5,
         owned: 0,
-        costMultiplier: 1.2,
+        costMultiplier: 1.14,
         type: 'click'
     },
     {
         id: 'scanner',
         name: 'Mineral Scanner',
-        description: 'Identifies rich mineral deposits',
-        baseCost: 75,
+        description: 'Finds mineral-rich spots automatically',
+        baseCost: 100,
         baseIncrease: 0.5,
         owned: 0,
         costMultiplier: 1.15,
         type: 'passive'
     },
-
-    // Mid-Early Game (100-500)
-    {
-        id: 'drone',
-        name: 'Mining Drone',
-        description: 'Autonomous drone that collects space minerals',
-        baseCost: 100,
-        baseIncrease: 0.8,
-        owned: 0,
-        costMultiplier: 1.15,
-        type: 'passive'
-    },
-    {
-        id: 'drill',
-        name: 'Quantum Drill',
-        description: 'Quantum-powered manual mining tool',
-        baseCost: 250,
-        baseIncrease: 5,
-        owned: 0,
-        costMultiplier: 1.2,
-        type: 'click'
-    },
-    {
-        id: 'collector',
-        name: 'Particle Collector',
-        description: 'Collects floating mineral particles',
-        baseCost: 400,
-        baseIncrease: 2,
-        owned: 0,
-        costMultiplier: 1.15,
-        type: 'passive'
-    },
-
-    // Mid Game (500-2000)
-    {
-        id: 'station',
-        name: 'Mining Station',
-        description: 'Orbital station with advanced mining capabilities',
-        baseCost: 1100,
-        baseIncrease: 4,
-        owned: 0,
-        costMultiplier: 1.15,
-        type: 'passive'
-    },
-    {
-        id: 'atomizer',
-        name: 'Mineral Atomizer',
-        description: 'Breaks down asteroids at atomic level',
-        baseCost: 1500,
-        baseIncrease: 25,
-        owned: 0,
-        costMultiplier: 1.2,
-        type: 'click'
-    },
+    // Mid Game (100-1000)
     {
         id: 'beam',
-        name: 'Tractor Beam',
-        description: 'Pulls in distant mineral clusters',
-        baseCost: 1800,
-        baseIncrease: 7,
+        name: 'Plasma Beam',
+        description: 'Advanced mining beam technology',
+        baseCost: 500,
+        baseIncrease: 2,
         owned: 0,
-        costMultiplier: 1.15,
-        type: 'passive'
-    },
-
-    // Late Mid Game (2000-10000)
-    {
-        id: 'reactor',
-        name: 'Fusion Reactor',
-        description: 'Powers advanced mining operations',
-        baseCost: 3000,
-        baseIncrease: 12,
-        owned: 0,
-        costMultiplier: 1.15,
+        costMultiplier: 1.16,
         type: 'passive'
     },
     {
         id: 'gauntlet',
-        name: 'Mining Gauntlet',
-        description: 'Harnesses stellar energy for manual mining',
-        baseCost: 4000,
+        name: 'Power Gauntlet',
+        description: 'Amplifies your clicking power',
+        baseCost: 800,
+        baseIncrease: 4,
+        owned: 0,
+        costMultiplier: 1.15,
+        type: 'click'
+    },
+    // Late Early Game (1k-10k)
+    {
+        id: 'robot',
+        name: 'Mining Robot',
+        description: 'Automated mining assistant',
+        baseCost: 3000,
+        baseIncrease: 10,
+        owned: 0,
+        costMultiplier: 1.17,
+        type: 'passive'
+    },
+    {
+        id: 'quantum',
+        name: 'Quantum Pickaxe',
+        description: 'Mines across multiple dimensions',
+        baseCost: 5000,
+        baseIncrease: 20,
+        owned: 0,
+        costMultiplier: 1.16,
+        type: 'click'
+    },
+    // Mid Game (10k-100k)
+    {
+        id: 'station',
+        name: 'Mining Station',
+        description: 'Orbital facility for continuous mining',
+        baseCost: 15000,
         baseIncrease: 50,
         owned: 0,
-        costMultiplier: 1.2,
-        type: 'click'
-    },
-    {
-        id: 'satellite',
-        name: 'Mining Satellite Network',
-        description: 'Network of automated mining satellites',
-        baseCost: 7500,
-        baseIncrease: 25,
-        owned: 0,
-        costMultiplier: 1.15,
+        costMultiplier: 1.18,
         type: 'passive'
     },
-
-    // End Game (10000+)
     {
-        id: 'planetcracker',
-        name: 'Planet Cracker',
-        description: 'Breaks small planets into mineable chunks',
-        baseCost: 12000,
+        id: 'amplifier',
+        name: 'Neural Amplifier',
+        description: 'Enhances mining focus and efficiency',
+        baseCost: 25000,
         baseIncrease: 100,
         owned: 0,
-        costMultiplier: 1.15,
-        type: 'passive'
-    },
-    {
-        id: 'singularity',
-        name: 'Quantum Singularity',
-        description: 'Harnesses black hole energy for mining',
-        baseCost: 20000,
-        baseIncrease: 200,
-        owned: 0,
-        costMultiplier: 1.2,
+        costMultiplier: 1.17,
         type: 'click'
     },
+    // Late Mid Game (100k-1M)
     {
-        id: 'dysonrig',
-        name: 'Dyson Mining Rig',
-        description: 'Surrounds stars to maximize mineral extraction',
-        baseCost: 50000,
-        baseIncrease: 400,
+        id: 'swarm',
+        name: 'Nanite Swarm',
+        description: 'Self-replicating mining machines',
+        baseCost: 100000,
+        baseIncrease: 300,
         owned: 0,
-        costMultiplier: 1.15,
+        costMultiplier: 1.19,
         type: 'passive'
+    },
+    {
+        id: 'forge',
+        name: 'Star Forge',
+        description: 'Harnesses stellar energy for mining',
+        baseCost: 250000,
+        baseIncrease: 600,
+        owned: 0,
+        costMultiplier: 1.18,
+        type: 'click'
+    },
+    // Early Late Game (1M-10M)
+    {
+        id: 'dyson',
+        name: 'Dyson Sphere',
+        description: 'Captures entire star\'s energy for mining',
+        baseCost: 1000000,
+        baseIncrease: 2000,
+        owned: 0,
+        costMultiplier: 1.20,
+        type: 'passive'
+    },
+    {
+        id: 'reality',
+        name: 'Reality Bender',
+        description: 'Warps space-time for instant mineral extraction',
+        baseCost: 2500000,
+        baseIncrease: 4000,
+        owned: 0,
+        costMultiplier: 1.19,
+        type: 'click'
+    },
+    // Late Game (10M+)
+    {
+        id: 'galaxy',
+        name: 'Galaxy Harvester',
+        description: 'Mines entire galaxy clusters automatically',
+        baseCost: 10000000,
+        baseIncrease: 10000,
+        owned: 0,
+        costMultiplier: 1.21,
+        type: 'passive'
+    },
+    {
+        id: 'cosmic',
+        name: 'Cosmic Manipulator',
+        description: 'Each click creates a mining supernova',
+        baseCost: 25000000,
+        baseIncrease: 20000,
+        owned: 0,
+        costMultiplier: 1.20,
+        type: 'click'
     }
 ];
 
@@ -170,6 +168,7 @@ const statistics = {
 };
 
 const achievements = [
+    // Beginning Achievements
     {
         id: 'first_steps',
         name: 'First Steps',
@@ -197,8 +196,129 @@ const achievements = [
         description: 'Reach 10 minerals per second',
         requirement: () => mineralsPerSecond >= 10,
         earned: false
+    },
+    // Clicking Achievements
+    {
+        id: 'click_apprentice',
+        name: 'Click Apprentice',
+        description: 'Click 1,000 times',
+        requirement: () => statistics.totalClicks >= 1000,
+        earned: false
+    },
+    {
+        id: 'click_master',
+        name: 'Click Master',
+        description: 'Click 10,000 times',
+        requirement: () => statistics.totalClicks >= 10000,
+        earned: false
+    },
+    {
+        id: 'click_grandmaster',
+        name: 'Click Grandmaster',
+        description: 'Click 100,000 times',
+        requirement: () => statistics.totalClicks >= 100000,
+        earned: false
+    },
+    // Mining Milestones
+    {
+        id: 'thousand_club',
+        name: 'Thousand Club',
+        description: 'Mine 1,000 total minerals',
+        requirement: () => statistics.totalMinerals >= 1000,
+        earned: false
+    },
+    {
+        id: 'million_miner',
+        name: 'Million Miner',
+        description: 'Mine 1,000,000 total minerals',
+        requirement: () => statistics.totalMinerals >= 1000000,
+        earned: false
+    },
+    {
+        id: 'billion_baron',
+        name: 'Billion Baron',
+        description: 'Mine 1,000,000,000 total minerals',
+        requirement: () => statistics.totalMinerals >= 1000000000,
+        earned: false
+    },
+    // Speed Achievements
+    {
+        id: 'speed_demon',
+        name: 'Speed Demon',
+        description: 'Reach 100 minerals per second',
+        requirement: () => mineralsPerSecond >= 100,
+        earned: false
+    },
+    {
+        id: 'hyperdrive',
+        name: 'Hyperdrive',
+        description: 'Reach 1,000 minerals per second',
+        requirement: () => mineralsPerSecond >= 1000,
+        earned: false
+    },
+    // Upgrade Collection
+    {
+        id: 'upgrade_collector',
+        name: 'Upgrade Collector',
+        description: 'Own 50 total upgrades',
+        requirement: () => statistics.upgradesBought >= 50,
+        earned: false
+    },
+    {
+        id: 'upgrade_hoarder',
+        name: 'Upgrade Hoarder',
+        description: 'Own 100 total upgrades',
+        requirement: () => statistics.upgradesBought >= 100,
+        earned: false
+    },
+    // Specific Upgrade Achievements
+    {
+        id: 'laser_focus',
+        name: 'Laser Focus',
+        description: 'Own 10 Mining Lasers',
+        requirement: () => upgrades.find(u => u.id === 'laser').owned >= 10,
+        earned: false
+    },
+    {
+        id: 'robot_army',
+        name: 'Robot Army',
+        description: 'Own 10 Mining Robots',
+        requirement: () => upgrades.find(u => u.id === 'robot').owned >= 10,
+        earned: false
+    },
+    // Spending Achievements
+    {
+        id: 'big_spender',
+        name: 'Big Spender',
+        description: 'Spend 1,000,000 minerals on upgrades',
+        requirement: () => statistics.mineralsSpent >= 1000000,
+        earned: false
+    },
+    {
+        id: 'space_mogul',
+        name: 'Space Mogul',
+        description: 'Spend 1,000,000,000 minerals on upgrades',
+        requirement: () => statistics.mineralsSpent >= 1000000000,
+        earned: false
     }
 ];
+
+const sounds = {
+    upgrade: new Audio('sounds/upgrade.ogg'),
+    achievement: new Audio('sounds/achievement.ogg')
+};
+
+const clickSounds = [
+    new Audio('sounds/hit1.wav'),
+    new Audio('sounds/hit2.wav'),
+    new Audio('sounds/hit3.wav')
+];
+let currentClickSound = 0;
+// Set all sounds to very short duration
+clickSounds.forEach(sound => {
+    sound.volume = 0.5; // Lower volume to prevent sound overlap
+    sound.preload = 'auto'; // Preload the sound
+});
 
 function checkAchievements() {
     achievements.forEach(achievement => {
@@ -212,6 +332,8 @@ function unlockAchievement(achievement) {
     achievement.earned = true;
     showAchievementNotification(achievement);
     updateAchievementsDisplay();
+    sounds.achievement.currentTime = 0;
+    sounds.achievement.play();
 }
 
 function showAchievementNotification(achievement) {
@@ -366,6 +488,8 @@ function purchaseUpgrade(upgrade) {
         }
         
         updateDisplay();
+        sounds.upgrade.currentTime = 0;
+        sounds.upgrade.play();
     }
 }
 
@@ -432,6 +556,10 @@ function initGame() {
 }
 
 document.getElementById('asteroid').addEventListener('click', (e) => {
+    clickSounds[currentClickSound].currentTime = 0;
+    clickSounds[currentClickSound].play();
+    currentClickSound = (currentClickSound + 1) % clickSounds.length;
+
     let clickPower = baseClickPower * clickMultiplier;
     score += clickPower;
     statistics.totalMinerals += clickPower;
