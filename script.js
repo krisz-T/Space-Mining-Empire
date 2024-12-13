@@ -249,34 +249,28 @@ function createStatsPanel() {
     const statsDiv = document.createElement('div');
     statsDiv.className = 'stats-grid';
     statsDiv.innerHTML = `
-        <div class="upgrade-item">
-            <h3>Total Minerals Mined</h3>
+        <div class="stat-card">
+            <div class="stat-title">Total Minerals Mined</div>
             <div class="stat-value" id="stat-total">0</div>
         </div>
-        <div class="upgrade-item">
-            <h3>Total Clicks</h3>
+        <div class="stat-card">
+            <div class="stat-title">Total Clicks</div>
             <div class="stat-value" id="stat-clicks">0</div>
         </div>
-        <div class="upgrade-item">
-            <h3>Time Played</h3>
+        <div class="stat-card">
+            <div class="stat-title">Time Played</div>
             <div class="stat-value" id="stat-time">0h 0m</div>
         </div>
-        <div class="upgrade-item">
-            <h3>Minerals Spent</h3>
+        <div class="stat-card">
+            <div class="stat-title">Minerals Spent</div>
             <div class="stat-value" id="stat-spent">0</div>
         </div>
-        <div class="upgrade-item">
-            <h3>Upgrades Bought</h3>
+        <div class="stat-card">
+            <div class="stat-title">Upgrades Purchased</div>
             <div class="stat-value" id="stat-upgrades">0</div>
         </div>
-        <div class="upgrade-item">
-            <h3>Achievements Earned</h3>
-            <div class="stat-value" id="achievements-earned">0/${achievements.length}</div>
-        </div>
-        <div id="achievements-list"></div>
     `;
     document.getElementById('statsContainer').appendChild(statsDiv);
-    updateAchievementsDisplay();
 }
 
 function updateAchievementsDisplay() {
