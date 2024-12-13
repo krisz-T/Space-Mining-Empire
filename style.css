@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+:root {
+    --primary: #4a9eff;
+    --accent: #ffd93d;
+    --dark: #0a0a2a;
+    --glow: 0 0 80px var(--primary);
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at center, var(--dark), #050514);
+    color: white;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 3em;
+    text-shadow: 0 0 20px var(--primary);
+    margin-bottom: 20px;
+}
+
+.score, .cps {
+    font-size: 1.8em;
+    text-shadow: 0 0 10px var(--primary);
+    margin: 10px;
+    letter-spacing: 1px;
+}
+
+.game-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-area {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, white, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 70px, var(--accent), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 160px, var(--primary), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, var(--accent), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 160px 120px, var(--primary), rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    animation: starflow 20s linear infinite;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.starfield:after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-image: inherit;
+    background-repeat: repeat;
+    background-size: inherit;
+}
+
+.asteroid {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at 30% 30%, var(--accent), var(--primary));
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 40px auto;
+    transition: all 0.2s;
+    box-shadow: var(--glow);
+    position: relative;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.asteroid:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 100px var(--accent);
+}
+
+.asteroid:active {
+    transform: scale(0.95);
+}
+
+.side-panel {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+}
+
+.tab-buttons {
+    display: flex;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.2em;
+}
+
+.tab-btn.active {
+    background: rgba(74, 158, 255, 0.2);
+    border-bottom: 2px solid var(--primary);
+}
+
+.tab-content {
+    height: calc(100vh - 54px);
+    overflow-y: auto;
+}
+
+.tab-pane {
+    display: none;
+    padding: 20px;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.upgrade-item {
+    background: rgba(74, 158, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(74, 158, 255, 0.2);
+    border-left: 4px solid transparent;
+}
+
+.upgrade-item[data-type="passive"] {
+    border-left-color: var(--primary);
+}
+
+.upgrade-item[data-type="click"] {
+    border-left-color: var(--accent);
+}
+
+.upgrade-item h3 {
+    color: var(--accent);
+    font-size: 1.4em;
+    margin-bottom: 8px;
+}
+
+.upgrade-item .description {
+    color: #ccc;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+}
+
+.upgrade-item .stats {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+
+.floating-number {
+    position: absolute;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 28px;
+    text-shadow: 0 0 15px var(--accent);
+    pointer-events: none;
+    animation: floatUp 1s ease-out forwards;
+}
+
+.upgrade-item:hover {
+    background: rgba(74, 158, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.upgrade-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.particle {
+    pointer-events: none;
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    width: 4px;
+    height: 4px;
+    animation: particle 0.8s ease-out forwards;
+}
+
+.floating-number {
+    position: absolute;
+    color: var(--accent);
+    font-weight: bold;
+    pointer-events: none;
+    animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 50px var(--primary); }
+    50% { box-shadow: 0 0 80px var(--accent); }
+    100% { box-shadow: 0 0 50px var(--primary); }
+}
+
+@keyframes starflow {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+}
+
+@keyframes particle {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-50px); opacity: 0; }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.floating-number {
+    position: absolute;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 28px;
+    text-shadow: 0 0 15px var(--accent);
+    pointer-events: none;
+    animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+
+.achievement-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(74, 158, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    padding: 15px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+.achievement-name {
+    color: var(--accent);
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.achievement-reward {
+    color: #a0f0a0;
+    font-size: 0.9em;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(120%); }
+    to { transform: translateX(0); }
+}

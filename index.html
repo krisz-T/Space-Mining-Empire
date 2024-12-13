@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Mining Empire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="main-area">
+            <div class="starfield"></div>
+            <h1>Space Mining Empire</h1>
+            <div class="score">Minerals: <span id="score">0</span></div>
+            <div class="asteroid" id="asteroid"></div>
+            <div class="cps"><span id="cps">0</span></div>
+        </div>
+        <div class="side-panel">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="upgrades">Upgrades</button>
+                <button class="tab-btn" data-tab="stats">Statistics</button>
+                <button class="tab-btn" data-tab="achievements">Achievements</button>
+            </div>
+            <div class="tab-content">
+                <div id="upgradesContainer" class="tab-pane active"></div>
+                <div id="statsContainer" class="tab-pane"></div>
+                <div id="achievementsContainer" class="tab-pane"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
