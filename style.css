@@ -345,3 +345,128 @@ h1 {
     background: var(--primary);
     border-radius: 4px;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .game-container {
+        flex-direction: column;
+    }
+
+    .side-panel {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .main-area {
+        height: 50vh;
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    .score {
+        font-size: 2em;
+    }
+
+    .asteroid {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .tab-btn {
+        font-size: 1em;
+        padding: 15px 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-title {
+        font-size: 1em;
+    }
+
+    .stat-value {
+        font-size: 1.4em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .asteroid {
+        width: 150px;
+        height: 150px;
+    }
+
+    .tab-buttons {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        flex: 1 1 50%;
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    #upgradesContainer .upgrade-item {
+        padding: 10px;
+    }
+
+    .achievement-notification {
+        width: 90%;
+        right: 5%;
+        font-size: 0.9em;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .asteroid:hover {
+        transform: none;
+    }
+
+    #upgradesContainer .upgrade-item:hover {
+        transform: none;
+    }
+
+    .stat-card:hover {
+        transform: none;
+    }
+}
+
+/* Orientation Specific */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .game-container {
+        flex-direction: row;
+    }
+
+    .side-panel {
+        width: 40%;
+        height: 100vh;
+    }
+
+    .main-area {
+        height: 100vh;
+    }
+
+    .asteroid {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .game-container {
+        min-height: -webkit-fill-available;
+    }
+}

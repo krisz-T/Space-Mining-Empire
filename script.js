@@ -569,6 +569,32 @@ document.getElementById('asteroid').addEventListener('click', (e) => {
     updateDisplay();
 });
 
+let spacePressed = false;
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space' && !spacePressed) {
+        spacePressed = true;
+        event.preventDefault();
+        
+        const asteroid = document.getElementById('asteroid');
+        const rect = asteroid.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const fakeClick = new MouseEvent('click', {
+            clientX: centerX,
+            clientY: centerY
+        });
+        
+        asteroid.dispatchEvent(fakeClick);
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    if (event.code === 'Space') {
+        spacePressed = false;
+    }
+});
+
 setInterval(() => {
     statistics.timePlayed = Math.floor((Date.now() - statistics.startDate) / 1000);
     document.getElementById('stat-total').textContent = formatNumber(statistics.totalMinerals);
