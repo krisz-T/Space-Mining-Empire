@@ -320,6 +320,147 @@ clickSounds.forEach(sound => {
     sound.preload = 'auto'; // Preload the sound
 });
 
+const gameSettings = {
+    volume: 0.5,
+    theme: {
+        current: 'default',
+        options: {
+            default: {
+                primary: '#4a9eff',
+                accent: '#ffd93d',
+                dark: '#0a0a2a'
+            },
+            midnight: {
+                primary: '#ffffff',
+                accent: '#00ffff',
+                dark: '#000000'
+            },
+            toxic: {
+                primary: '#39ff14',
+                accent: '#ffff00',
+                dark: '#051505'
+            },
+            neon: {
+                primary: '#ff00ff',
+                accent: '#00ffff',
+                dark: '#0a0033'
+            },
+            blood: {
+                primary: '#ff0000',
+                accent: '#ff6b6b',
+                dark: '#200000'
+            },
+            void: {
+                primary: '#9400ff',
+                accent: '#ff00aa',
+                dark: '#0a0015'
+            },
+            sunset: {
+                primary: '#ff6b2b',
+                accent: '#ffd700',
+                dark: '#1a0f0a'
+            },
+            matrix: {
+                primary: '#00ff00',
+                accent: '#66ff66',
+                dark: '#001a00'
+            },
+            ocean: {
+                primary: '#00ffff',
+                accent: '#0088ff',
+                dark: '#000033'
+            },
+            retro: {
+                primary: '#ff9100',
+                accent: '#ffff00',
+                dark: '#1a1000'
+            },
+            crystal: {
+                primary: '#00ffcc',
+                accent: '#ff00ff',
+                dark: '#001a15'
+            },
+            royal: {
+                primary: '#9933ff',
+                accent: '#ff3366',
+                dark: '#110033'
+            }
+        }
+    }
+};
+
+function initializeSounds() {
+    clickSounds.forEach(sound => {
+        sound.volume = gameSettings.volume;
+        sound.preload = 'auto';
+    });
+
+    Object.values(sounds).forEach(sound => {
+        sound.volume = gameSettings.volume;
+        sound.preload = 'auto';
+    });
+}
+
+function updateGameVolume(volume) {
+    gameSettings.volume = volume;
+    clickSounds.forEach(sound => sound.volume = volume);
+    Object.values(sounds).forEach(sound => sound.volume = volume);
+}
+
+function createSettingsPanel() {
+    const container = document.getElementById('settingsContainer');
+    container.innerHTML = `
+        <div class="settings-section">
+            <h2>Audio</h2>
+            <div class="setting-item">
+                <label>Master Volume</label>
+                <input type="range" id="masterVolume" min="0" max="100" value="${gameSettings.volume * 100}">
+            </div>
+        </div>
+        <div class="settings-section">
+            <h2>Theme</h2>
+            <div class="theme-selector">
+                ${Object.keys(gameSettings.theme.options).map(theme => `
+                    <div class="theme-option ${theme === gameSettings.theme.current ? 'active' : ''}" 
+                         data-theme="${theme}">
+                        <div class="theme-preview" style="background: ${gameSettings.theme.options[theme].primary}"></div>
+                        <span>${theme.charAt(0).toUpperCase() + theme.slice(1)}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+    initializeSettingsListeners();
+}
+
+
+function initializeSettingsListeners() {
+    const volumeSlider = document.getElementById('masterVolume');
+    volumeSlider.addEventListener('input', (e) => {
+        const volume = e.target.value / 100;
+        gameSettings.volume = volume;
+        updateGameVolume(volume);
+    });
+    document.querySelectorAll('.theme-option').forEach(option => {
+        option.addEventListener('click', () => {
+            const theme = option.dataset.theme;
+            applyTheme(theme);
+            document.querySelectorAll('.theme-option').forEach(opt => 
+                opt.classList.toggle('active', opt.dataset.theme === theme)
+            );
+        });
+    });
+}
+
+function applyTheme(themeName) {
+    const theme = gameSettings.theme.options[themeName];
+    document.documentElement.style.setProperty('--primary', theme.primary);
+    document.documentElement.style.setProperty('--accent', theme.accent);
+    document.documentElement.style.setProperty('--dark', theme.dark);
+    gameSettings.theme.current = themeName;
+}
+
 function checkAchievements() {
     achievements.forEach(achievement => {
         if (!achievement.earned && achievement.requirement()) {
@@ -544,6 +685,7 @@ function initGame() {
     }
 
     createStatsPanel();
+    createSettingsPanel();
     initTabs();
 
     setInterval(() => {
@@ -553,11 +695,13 @@ function initGame() {
         }
         checkAchievements();
     }, 1000);
+    initializeSounds();
 }
 
 document.getElementById('asteroid').addEventListener('click', (e) => {
-    clickSounds[currentClickSound].currentTime = 0;
-    clickSounds[currentClickSound].play();
+    const sound = clickSounds[currentClickSound];
+    sound.currentTime = 0;
+    sound.play();
     currentClickSound = (currentClickSound + 1) % clickSounds.length;
 
     let clickPower = baseClickPower * clickMultiplier;
@@ -567,6 +711,32 @@ document.getElementById('asteroid').addEventListener('click', (e) => {
     createParticles(e);
     showFloatingNumber(e.clientX, e.clientY, clickPower);
     updateDisplay();
+});
+
+let spacePressed = false;
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space' && !spacePressed) {
+        spacePressed = true;
+        event.preventDefault();
+        
+        const asteroid = document.getElementById('asteroid');
+        const rect = asteroid.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const fakeClick = new MouseEvent('click', {
+            clientX: centerX,
+            clientY: centerY
+        });
+        
+        asteroid.dispatchEvent(fakeClick);
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    if (event.code === 'Space') {
+        spacePressed = false;
+    }
 });
 
 setInterval(() => {

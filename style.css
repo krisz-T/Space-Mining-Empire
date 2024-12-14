@@ -57,7 +57,9 @@ h1 {
 .game-container {
     display: flex;
     min-height: 100vh;
+    position: relative;
 }
+
 
 .main-area {
     flex: 1;
@@ -128,22 +130,39 @@ h1 {
     width: 400px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
+
 .tab-buttons {
+    font-size: 0.8em;
     display: flex;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    min-height: 54px;
+    width: 100%;
 }
 
 .tab-btn {
-    flex: 1;
+    text-align: center;
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     background: none;
     border: none;
     color: white;
-    padding: 20px;
+    padding: 10px 5px;
     cursor: pointer;
     transition: all 0.3s;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    white-space: normal;
+    line-height: 1.2;
 }
 
 .tab-btn.active {
@@ -152,8 +171,9 @@ h1 {
 }
 
 .tab-content {
-    height: calc(100vh - 54px);
+    flex: 1;
     overflow-y: auto;
+    position: relative;
 }
 
 .tab-pane {
@@ -163,6 +183,24 @@ h1 {
 
 .tab-pane.active {
     display: block;
+}
+
+#settingsContainer {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.settings-section {
+    width: 100%;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.settings-section h2 {
+    color: var(--primary);
+    margin-bottom: 15px;
 }
 
 #upgradesContainer .upgrade-item {
@@ -307,6 +345,61 @@ h1 {
     animation: floatUp 1s ease-out forwards;
 }
 
+/* Volume Slider Styling */
+#masterVolume {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    outline: none;
+    vertical-align: middle;
+}
+
+#masterVolume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px var(--primary);
+    transition: all 0.2s;
+    transform: translateY(-6px);
+}
+
+#masterVolume::-webkit-slider-thumb:hover {
+    transform: translateY(-6px) scale(1.1);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+#masterVolume::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px var(--primary);
+    border: none;
+    transition: all 0.2s;
+}
+
+#masterVolume::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+#masterVolume::-moz-range-progress {
+    background: var(--primary);
+    height: 8px;
+    border-radius: 4px;
+}
+
+#masterVolume::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 4px;
+}
+
 @keyframes pulse {
     0% { box-shadow: 0 0 50px var(--primary); }
     50% { box-shadow: 0 0 80px var(--accent); }
@@ -344,4 +437,191 @@ h1 {
 ::-webkit-scrollbar-thumb {
     background: var(--primary);
     border-radius: 4px;
+}
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #333;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.theme-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+}
+
+.theme-option {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.theme-option.active {
+    border: 2px solid var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-preview {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .game-container {
+        flex-direction: column;
+    }
+
+    .side-panel {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .tab-content {
+        height: calc(50vh - 54px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .tab-buttons {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-btn {
+        padding: 12px;
+        font-size: 0.9em;
+        min-width: max-content;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-title {
+        font-size: 1em;
+    }
+
+    .stat-value {
+        font-size: 1.4em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .asteroid {
+        width: 150px;
+        height: 150px;
+    }
+
+    .tab-buttons {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        flex: 1 1 50%;
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    #upgradesContainer .upgrade-item {
+        padding: 10px;
+    }
+
+    .achievement-notification {
+        width: 90%;
+        right: 5%;
+        font-size: 0.9em;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .asteroid:hover {
+        transform: none;
+    }
+
+    #upgradesContainer .upgrade-item:hover {
+        transform: none;
+    }
+
+    .stat-card:hover {
+        transform: none;
+    }
+}
+
+/* Orientation Specific */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .side-panel {
+        width: 40%;
+        height: 100vh;
+    }
+
+    .tab-content {
+        height: calc(100vh - 54px);
+    }
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .game-container {
+        min-height: -webkit-fill-available;
+    }
 }
