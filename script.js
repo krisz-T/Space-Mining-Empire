@@ -664,7 +664,6 @@ function createPrestigePanel() {
     
     document.getElementById('prestige-button').addEventListener('click', prestige);
 }
-
 function createPrestigeNotification(points) {
     const notification = document.createElement('div');
     notification.className = 'prestige-notification';
@@ -675,7 +674,6 @@ function createPrestigeNotification(points) {
     document.body.appendChild(notification);
     setTimeout(() => notification.remove(), 3000);
 }
-
 
 // ===== EVENT LISTENERS =====
 function initializeSettingsListeners() {

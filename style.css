@@ -146,6 +146,8 @@ h1 {
     z-index: 10;
     min-height: 54px;
     width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
 }
 
 .tab-btn {
@@ -666,7 +668,6 @@ input:checked + .slider:before {
     margin: 15px 0;
     font-weight: bold;
 }
-
 
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
